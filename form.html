@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Page</title>
+</head>
+
+<body>
+    <h1>Your Details</h1>
+    <div id="detailsContainer"></div>
+
+    <script>
+        const detailsContainer = document.getElementById("detailsContainer");
+
+        if (localStorage.length > 0) {
+            const detailsList = document.createElement("ul");
+
+            const keys = ["userName", "userEmail", "userComment"];
+            keys.forEach(key => {
+                if (localStorage.getItem(key)) {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = `${key.replace("user", "")}: ${localStorage.getItem(key)}`;
+                    detailsList.appendChild(listItem);
+                }
+            });
+
+            detailsContainer.appendChild(detailsList);
+        } else {
+            detailsContainer.textContent = "No data available.";
+        }
+    </script>
+</body>
+
+</html>
